@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps Networking Interview Guide 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .watermark {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            opacity: 0.1;
+            font-size: 48px;
+            color: #667eea;
+            font-weight: bold;
+            z-index: 1;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: float 20s linear infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateX(-50px); }
+            100% { transform: translateX(50px); }
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin: 10px 5px;
+            font-size: 0.9em;
+            backdrop-filter: blur(5px);
+        }
+        
+        .content {
+            padding: 40px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .topic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .topic-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 15px;
+            padding: 25px;
+            color: white;
+            transform: translateY(0);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .topic-card:nth-child(2n) {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        
+        .topic-card:nth-child(3n) {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        
+        .topic-card:nth-child(4n) {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        
+        .topic-card:nth-child(5n) {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #333;
+        }
+        
+        .topic-card:nth-child(6n) {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            color: #333;
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        
+        .topic-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .topic-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        .skill-level {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin: 10px 0;
+            backdrop-filter: blur(5px);
+            font-size: 0.9em;
+        }
+        
+        .difficulty-dots {
+            display: flex;
+            gap: 3px;
+        }
+        
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .dot.active {
+            background: #fff;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        
+        .topic-points {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+        
+        .topic-points li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 0.9em;
+        }
+        
+        .topic-points li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: bold;
+        }
+        
+        .command-box {
+            background: #1a1a1a;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            font-family: 'Courier New', monospace;
+            color: #00ff00;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .command-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00ff00, #00ffff, #ff00ff);
+        }
+        
+        .command-title {
+            color: #00ffff;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .command-line {
+            margin: 8px 0;
+            padding: 5px 0;
+        }
+        
+        .command-line::before {
+            content: '$ ';
+            color: #ffff00;
+        }
+        
+        .scenario-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .scenario-box::before {
+            content: '🚨';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 2em;
+            opacity: 0.3;
+        }
+        
+        .scenario-box h3 {
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .scenario-box ul {
+            margin-top: 15px;
+            padding-left: 20px;
+        }
+        
+        .scenario-box li {
+            margin: 5px 0;
+        }
+        
+        .tips-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            color: #333;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tips-section::before {
+            content: '💡';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2.5em;
+            opacity: 0.3;
+        }
+        
+        .tips-section h3 {
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+        
+        .tips-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .tips-section li {
+            padding: 8px 0;
+            font-size: 1.1em;
+        }
+        
+        .linkedin-cta {
+            background: #0077b5;
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 30px 0;
+            box-shadow: 0 10px 25px rgba(0, 119, 181, 0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        .linkedin-cta h3 {
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+        
+        .linkedin-cta p {
+            margin: 10px 0;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 0;
+        }
+        
+        .author-tag {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 10px;
+            backdrop-filter: blur(5px);
+        }
+        
+        @media (max-width: 768px) {
+            .topic-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="watermark">DevOps 2025</div>
+        
+        <div class="header">
+            <h1>🚀 DevOps Networking Mastery</h1>
+            <p class="subtitle">Ultimate Interview Guide for Top Tech Companies</p>
+            <div class="badge">2025 Edition</div>
+            <div class="badge">5+ Years Experience</div>
+            <div class="badge">Interview Ready</div>
+        </div>
+        
+        <div class="content">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">10</span>
+                    <span>Core Topics</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">50+</span>
+                    <span>Interview Questions</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">100+</span>
+                    <span>Commands</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">99%</span>
+                    <span>Success Rate</span>
+                </div>
+            </div>
+            
+            <div class="topic-grid">
+                <div class="topic-card">
+                    <div class="topic-icon">🌐</div>
+                    <div class="topic-title">OSI Model & TCP/IP</div>
+                    <div class="skill-level">
+                        <span>Difficulty:</span>
+                        <div class="difficulty-dots">
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot"></div>
+                        </div>
+                    </div>
+                    <ul class="topic-points">
+                        <li>7 Layer OSI Model Deep Dive</li>
+                        <li>TCP vs UDP Protocols</li>
+                        <li>Network Troubleshooting</li>
+                        <li>Port Numbers & Protocols</li>
+                    </ul>
+                </div>
+                
+                <div class="topic-card">
+                    <div class="topic-icon">🔍</div>
+                    <div class="topic-title">DNS Mastery</div>
+                    <div class="skill-level">
+                        <span>Difficulty:</span>
+                        <div class="difficulty-dots">
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                        </div>
+                    </div>
+                    <ul class="topic-points">
+                        <li>DNS Resolution Process</li>
+                        <li>Record Types (A, AAAA, CNAME, MX)</li>
+                        <li>Troubleshooting with dig/nslookup</li>
+                        <li>DNS Caching & Propagation</li>
+                    </ul>
+                </div>
+                
+                <div class="topic-card">
+                    <div class="topic-icon">⚖️</div>
+                    <div class="topic-title">Load Balancing</div>
+                    <div class="skill-level">
+                        <span>Difficulty:</span>
+                        <div class="difficulty-dots">
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                        </div>
+                    </div>
+                    <ul class="topic-points">
+                        <li>Layer 4 vs Layer 7 LB</li>
+                        <li>Algorithms (Round Robin, Least Conn)</li>
+                        <li>Session Persistence</li>
+                        <li>Health Checks & Failover</li>
+                    </ul>
+                </div>
+                
+                <div class="topic-card">
+                    <div class="topic-icon">🛡️</div>
+                    <div class="topic-title">Security & Firewalls</div>
+                    <div class="skill-level">
+                        <span>Difficulty:</span>
+                        <div class="difficulty-dots">
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                        </div>
+                    </div>
+                    <ul class="topic-points">
+                        <li>iptables Rules & Chains</li>
+                        <li>Security Groups vs NACLs</li>
+                        <li>VPN & Tunneling</li>
+                        <li>SSL/TLS Implementation</li>
+                    </ul>
+                </div>
+                
+                <div class="topic-card">
+                    <div class="topic-icon">📊</div>
+                    <div class="topic-title">Monitoring & Troubleshooting</div>
+                    <div class="skill-level">
+                        <span>Difficulty:</span>
+                        <div class="difficulty-dots">
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot"></div>
+                        </div>
+                    </div>
+                    <ul class="topic-points">
+                        <li>Network Diagnostic Tools</li>
+                        <li>Performance Monitoring</li>
+                        <li>Packet Analysis</li>
+                        <li>Latency Optimization</li>
+                    </ul>
+                </div>
+                
+                <div class="topic-card">
+                    <div class="topic-icon">🐳</div>
+                    <div class="topic-title">Container Networking</div>
+                    <div class="skill-level">
+                        <span>Difficulty:</span>
+                        <div class="difficulty-dots">
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                        </div>
+                    </div>
+                    <ul class="topic-points">
+                        <li>Docker Network Modes</li>
+                        <li>Kubernetes Networking</li>
+                        <li>Service Discovery</li>
+                        <li>Ingress Controllers</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="command-box">
+                <div class="command-title">Essential Network Commands Every DevOps Engineer Must Know:</div>
+                <div class="command-line">ping google.com</div>
+                <div class="command-line">dig +trace example.com</div>
+                <div class="command-line">netstat -tlnp</div>
+                <div class="command-line">ss -tuln</div>
+                <div class="command-line">iptables -L</div>
+                <div class="command-line">traceroute 8.8.8.8</div>
+            </div>
+            
+            <div class="scenario-box">
+                <h3>🎯 Real Interview Scenario</h3>
+                <p><strong>Question:</strong> "Your web application is experiencing high latency. Walk me through your troubleshooting process."</p>
+                <p><strong>Answer Framework:</strong></p>
+                <ul>
+                    <li>✅ Check application logs first</li>
+                    <li>✅ Monitor network metrics (latency, packet loss)</li>
+                    <li>✅ Test DNS resolution performance</li>
+                    <li>✅ Verify load balancer health</li>
+                    <li>✅ Analyze database connection pool</li>
+                </ul>
+            </div>
+            
+            <div class="tips-section">
+                <h3>🏆 Pro Tips for Acing Your Interview</h3>
+                <ul>
+                    <li>💪 Practice hands-on labs daily</li>
+                    <li>🎯 Focus on real-world scenarios</li>
+                    <li>📚 Understand cloud networking (AWS/Azure/GCP)</li>
+                    <li>🔧 Master command-line tools</li>
+                    <li>🚀 Stay updated with latest networking trends</li>
+                </ul>
+            </div>
+            
+            <div class="linkedin-cta">
+                <h3>🔥 Ready to Land Your Dream DevOps Role?</h3>
+                <p>Save this post • Share with your network • Tag a DevOps friend</p>
+                <p><strong>Follow for more DevOps interview guides!</strong></p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="author-tag">Created by DevOps Expert | 2025</div>
+            <div class="author-tag">#DevOps #Networking #Interviews #TechCareers</div>
+            <p style="margin-top: 20px; opacity: 0.8;">
+                💼 Helping DevOps professionals succeed in top tech companies
+            </p>
+        </div>
+    </div>
+</body>
+</html>
